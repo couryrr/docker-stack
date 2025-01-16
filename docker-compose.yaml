@@ -1,0 +1,12 @@
+services:
+  ui:
+    image: couryrr/docker-volume-ui:latest
+    ports: 
+      - "3000:8080"
+    depends_on:
+      - backend
+  backend:
+    image: couryrr/docker-volume-backend:latest
+    ports: 
+      - "8080:8080"
+  

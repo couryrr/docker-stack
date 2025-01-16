@@ -1,0 +1,12 @@
+FROM golang:1.23-bookworm
+
+RUN apt-get update && \
+    apt-get upgrade -y && \ 
+    apt-get install inotify-tools -y
+
+WORKDIR /app
+
+COPY ./scripts/watch_and_reload.sh /app/scripts/watch_and_reload.sh
+
+ENTRYPOINT ["bash","/app/scripts/watch_and_reload.sh"]
+

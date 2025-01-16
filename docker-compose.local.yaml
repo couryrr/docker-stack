@@ -1,0 +1,22 @@
+services:
+  ui:
+    image: couryrr/docker-volume-ui:local
+    build: 
+      context: ./ui
+      dockerfile: Dockerfile.local
+    volumes:
+      - ./ui/public:/app/public
+    ports: 
+      - "3000:3000"
+    depends_on:
+      - backend
+  backend:
+    image: couryrr/docker-volume-backend:local
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.local
+    volumes:
+      - ./backend/bin:/app/bin
+    ports: 
+      - "8080:8080"
+  
