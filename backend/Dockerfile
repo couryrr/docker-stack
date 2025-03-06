@@ -1,11 +1,17 @@
-FROM golang:1.23-bookworm
+FROM golang:1.23-bookworm AS build
 
 RUN apt-get update && \
     apt-get upgrade -y
 
-WORKDIR /app
+WORKDIR /src
 
-COPY ./bin/main /app
+COPY ./ /src
 
-CMD ["/app/main"]
+RUN go build -o /bin/main .
+
+FROM debian:bookworm-slim AS final
+
+COPY --from=build /bin/main /bin/
+
+CMD ["/bin/main"]
 
