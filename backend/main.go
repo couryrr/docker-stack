@@ -3,6 +3,7 @@ package main
 import (
 	"crypto/sha256"
 	"encoding/hex"
+	"fmt"
 	"io"
 	"log"
 	"log/slog"
@@ -24,6 +25,7 @@ func main(){
         h.Write(message)
         hash := h.Sum(nil)
         enc := hex.EncodeToString(hash)
+        fmt.Println("Hello")
         w.Header().Set("Content-Type", "text/plain")
         w.Write([]byte(enc))
     })

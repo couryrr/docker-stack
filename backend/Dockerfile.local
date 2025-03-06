@@ -6,7 +6,7 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-COPY ./scripts/watch_and_reload.sh /app/scripts/watch_and_reload.sh
+COPY ./scripts /app/scripts
 
 ENTRYPOINT ["bash","/app/scripts/watch_and_reload.sh"]
 

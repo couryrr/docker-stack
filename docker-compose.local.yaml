@@ -3,11 +3,12 @@ services:
     image: couryrr/docker-volume-ui:local
     build: 
       context: ./ui
-      dockerfile: Dockerfile.local
+      dockerfile: Dockerfile
+      target: nonprod
     volumes:
       - ./ui/public:/app/public
     ports: 
-      - "3000:3000"
+      - "80:3000"
     depends_on:
       - backend
   backend:
